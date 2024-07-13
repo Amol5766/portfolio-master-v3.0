@@ -1,6 +1,6 @@
 <h2 align="center">
   Portfolio Website - v3.0<br/>
-  <a href="https://soumyajit.vercel.app/" target="_blank">Amolm.tech</a>
+  <a href="https://soumyajit.vercel.app/" target="_blank">Amol M.tech</a>
 </h2>
 <div align="center">
   <img alt="Demo" src="./Images/readme-img1.png" />
