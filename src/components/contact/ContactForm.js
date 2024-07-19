@@ -10,7 +10,6 @@ const ContactForm = () => {
     email: '',
     message: ''
   });
-
   const [responseMessage, setResponseMessage] = useState('');
 
   const handleInputChange = (event) => {
@@ -84,9 +83,14 @@ const ContactForm = () => {
           </div>
           <button type="submit"><strong>Send</strong></button>
         </form>
+        {/* Display response message */}
+        {responseMessage && (
+          <div id="responseMessage">
+            {responseMessage}
+          </div>
+        )}
       </div>
       <div className="planet-container">
-        <div id="responseMessage">{responseMessage}</div> {/* Response message */}
         <Planet />
       </div>
     </div>
