@@ -1,100 +1,150 @@
-import React, { useState } from 'react';
-import emailjs from 'emailjs-com';
-import Planet from './Planet';
-import './ContactForm.css'; // Import your custom styles for the form
+.contact-container {
+  display: flex;
+  flex-direction: row; /* Ensure items are in a row */
+  max-width: 100%;
+  margin: 5vh;
+  padding: 5vh;
+  min-height: calc(100vh - 50px); /* Ensure it takes at least the full viewport height minus footer height */
+  text-align-last: center;
+  text-align: left;
+  text-size-adjust: right;
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
 
-const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    to_name: 'Recipient', // Replace with the actual recipient name if needed
-    from_name: '',
-    email: '',
-    message: ''
-  });
-  const [responseMessage, setResponseMessage] = useState('');
+.planet-container {
+  flex: 1; /* Take up remaining space */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center items horizontally */
+  margin: 5vh;
+  padding: 5vh;
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
+.planet {
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: auto;
+}
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+.form-container {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Stack form elements vertically */
+  justify-content: center; /* Center items vertically */
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
 
-    const serviceID = 'service_z4dddel';
-    const templateID = 'template_dx2utqk'; // Correct template ID
-    const userID = 'q3jhdGwcum9rzK8Xz';
+.form-group {
+  margin-bottom: 1rem;
+}
 
-    emailjs.send(serviceID, templateID, formData, userID)
-      .then((response) => {
-        console.log('Email sent successfully:', response.status, response.text);
-        setFormData({ to_name: 'Recipient', from_name: '', email: '', message: '' });
-        setResponseMessage('Message sent successfully!');
-      })
-      .catch((error) => {
-        console.error('Error sending email:', error);
-        setResponseMessage('Failed to send message. Please try again later.');
-      });
-  };
+label {
+  display: block;
+  font-weight: bold;
+  color: #fff; /* Add this if you want the text color to be white */
+  text-shadow: 0 0 10px rgba(138, 29, 227, 0.6), 0 0 20px rgba(138, 29, 227, 0.6); /* Purple shadow effect */
+}
 
-  return (
-    <div className="contact-container">
-      <div className="form-container">
-        <p><span className="purple">GET IN TOUCH 🚀</span></p>
-        <h1 className="title">Contact.</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="from_name" className="purple"><strong>Name :</strong></label>
-            <input
-              type="text"
-              id="from_name"
-              name="from_name"
-              placeholder="What's your name?"
-              value={formData.from_name}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="email" className="purple"><strong>Email :</strong></label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="What's your email?"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="message" className="purple"><strong>Message :</strong></label>
-            <textarea
-              id="message"
-              name="message"
-              rows="4"
-              placeholder="What do you want to say?"
-              value={formData.message}
-              onChange={handleInputChange}
-              required
-            ></textarea>
-          </div>
-          <button type="submit"><strong>Send</strong></button>
-        </form>
-        {/* Display response message */}
-        {responseMessage && (
-          <div id="responseMessage">
-            {responseMessage}
-          </div>
-        )}
-      </div>
-      <div className="planet-container">
-        <Planet />
-      </div>
-    </div>
-  );
-};
+.title {
+  font-size: 3rem; /* Adjust font size as needed */
+  color: #ae30ed; /* Add this if you want the text color to be white */
+  text-shadow: 0 0 10px rgba(138, 29, 227, 0.6), 0 0 20px rgba(138, 29, 227, 0.6); /* Purple shadow effect */
+  text-align: center; /* Center align the title */
+  margin-bottom: 2rem; /* Add some spacing below the title */
+}
 
-export default ContactForm;
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #2E3B30; /* Matte light greenish black background color */
+  color: #fff; /* White text color */
+  box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
+}
+
+button {
+  background-color: #8a1de3;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  border-radius: 10px; /* Slightly rounded corners */
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif; /* Modern font */
+  text-transform: uppercase;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #512fa8; /* Slightly darker shade of purple for hover effect */
+  box-shadow: 0 0 15px rgba(29, 177, 227, 0.6), 0 0 20px rgba(29, 177, 227, 0.6); /* Neon glow effect */
+  transform: scale(1.8); /* Slightly enlarges the button on hover */
+}
+
+button:active {
+  transform: scale(0.95); /* Shrinks the button when active/clicked */
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    margin: 5vh; /* Reduce margin for smaller screens */
+    padding: 2vh; /* Reduce padding for smaller screens */
+    min-height: calc(100vh - 50px); /* Ensure it takes at least the full viewport height minus footer height */
+  }
+
+  .planet-container,
+  .form-container {
+    margin: 2vh; /* Reduce margin for smaller screens */
+    padding: 2vh; /* Reduce padding for smaller screens */
+  }
+
+  .planet {
+    max-width: 90%;
+    max-height: 90%;
+  }
+
+  .title {
+    font-size: 2rem; /* Adjust font size for smaller screens */
+  }
+
+  button {
+    font-size: 0.875rem; /* Adjust font size for smaller screens */
+    padding: 0.5rem 1rem; /* Adjust padding for smaller screens */
+  }
+}
+
+footer {
+  width: 100%;
+  height: 50px; /* Adjust height as needed */
+  background-color: #2E3B30; /* Background color */
+  color: #fff; /* Text color */
+  display: flex;
+  justify-content: center; /* Center footer content horizontally */
+  align-items: center; /* Center footer content vertically */
+  position: relative; /* Ensure it's relative to the parent container */
+}
+
+#responseMessage {
+  color: white; /* White text color */
+  font-weight: bold; /* Bold text */
+  font-size: 16px; /* Adjust font size if needed */
+  text-align: center; /* Center the text */
+  text-shadow: 2px 2px 4px rgba(128, 0, 128, 0.7); /* Purple shadow for text */
+}
+
+
+
+
+
