@@ -31,7 +31,7 @@ function ResumeNew() {
         </Row>
 
         <Row className="resume">
-          <iframe
+          <a
             title="resume-pdf"
             src={pdfPath}
             style={{
