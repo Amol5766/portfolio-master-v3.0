@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Planet from './Planet';
-import './ContactForm.css'; // Import your custom styles for the form
+import './ContactForm.css'; 
+import {toast} from 'react-toastify';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -29,10 +30,12 @@ const ContactForm = () => {
       });
       const data = await response.json();
       console.log('Form submission response:', data);
-      // Optionally, reset form data after successful submission
+      toast.success('Form submitted sucessfully');
+      
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
       console.error('Error submitting form:', error);
+      toast.error('Error submitting form');
     }
   };
 
