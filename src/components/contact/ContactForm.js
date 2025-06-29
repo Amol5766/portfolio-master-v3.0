@@ -20,7 +20,7 @@ const ContactForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/contacts/submit', {
+      const response = await fetch('https://portfolio-backend-wo3d.onrender.com/api/contacts/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
